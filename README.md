@@ -49,6 +49,25 @@ Reviews pull requests, branches, commits, or uncommitted changes. It resolves th
 - Conventions for y-scope repos such as CLP, Spider, and yscope-log-viewer
 - Validation with the project's own lint, test, and build commands
 
+### post-pending-pr-review
+
+Puts review findings on a GitHub PR as a pending draft instead of submitting them, so you get to read the review first. It works from live PR state rather than a local copy: it snapshots the current head and whatever is already sitting in your pending review, then merges the new findings into that. Wording you edited stays as you wrote it, and comments you deleted stay deleted. It never submits.
+
+**Use when:**
+
+- Posting findings as inline comments instead of one long message
+- Adding to a pending review you have already started editing
+- Preparing a draft review to check over yourself first
+
+**How it behaves:**
+
+- Without `--run` it prepares the review and summarizes it, then waits
+- With `--run`, or a plain "post it", it applies the validated payload as a draft
+- It re-checks the head and your pending review first, and stops before writing anything if either moved
+- A finding with no honest anchor on a changed line goes in the review body instead
+- `suggestion` blocks appear only where the replacement fits inside one hunk, so they stay applyable
+- Needs `gh` and `jq`; no Python
+
 ### junhao-implement
 
 Implements fixes and features with the smallest change that satisfies the request, then validates with the repository's real commands and reports what actually passed. For known repos it loads a project reference that carries the exact commands and conventions. For behavior changes it writes a failing test first whenever a practical test surface exists.
@@ -95,6 +114,10 @@ Once installed, a skill loads on its own when a task matches its description. Yo
 
 ```
 Review PR #123 and check whether the earlier review comments were addressed
+```
+
+```
+Post those findings on the PR as a pending review
 ```
 
 ```
