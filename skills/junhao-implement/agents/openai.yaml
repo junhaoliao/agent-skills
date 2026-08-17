@@ -1,0 +1,4 @@
+interface:
+  display_name: "Junhao Implement"
+  short_description: "Implementation, validation, and PR preparation"
+  default_prompt: "Use $junhao-implement to implement this change, validate it, and write a repo-root PR description."

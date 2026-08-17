@@ -1,0 +1,4 @@
+interface:
+  display_name: "Junhao Rewrite"
+  short_description: "Curate large rewrites into clean, verified commits"
+  default_prompt: "Use $junhao-rewrite --improve auto to rewrite this codebase as a clean, behavior-verified commit stack."
